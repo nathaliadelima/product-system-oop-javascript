@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Produtos com Classes</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fdf6f9, #f3f0ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background: #c084fc;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Sistema de Produtos</h1>
+
+  <div class="container">
+    <button onclick="mostrarProdutos()">Mostrar Produtos</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    class Produto {
+      constructor(nome, preco) {
+        this.nome = nome;
+        this.preco = preco;
+      }
+
+      mostrarDetalhes() {
+        return `${this.nome} - R$ ${this.preco}`;
+      }
+    }
+
+    class Eletronico extends Produto {
+      constructor(nome, preco, garantia) {
+        super(nome, preco);
+        this.garantia = garantia;
+      }
+
+      mostrarDetalhes() {
+        return `${this.nome} - R$ ${this.preco} - Garantia: ${this.garantia} meses`;
+      }
+    }
+
+    const produto1 = new Produto("Mouse", 50);
+    const celular = new Eletronico("Celular", 1500, 12);
+
+    function mostrarProdutos() {
+      const resultado = document.getElementById("resultado");
+
+      resultado.innerHTML = `
+        <p>${produto1.mostrarDetalhes()}</p>
+        <p>${celular.mostrarDetalhes()}</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
